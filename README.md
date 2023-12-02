@@ -1,27 +1,38 @@
 # FrontYamdb
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
+## Описание
 
-## Development server
+Сервис YaMDb — база отзывов о фильмах, книгах и музыке. Frontend.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Данный проект создан с помощью [Angular CLI](https://github.com/angular/angular-cli) version 16.2.9.
 
-## Code scaffolding
+## Установка
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Клонировать репозиторий:
 
-## Build
+   ```
+   git clone https://github.com/VictorTsyganov/front-yamdb.git
+   ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Перейти в папку с проектом:
 
-## Running unit tests
+   ```
+   cd front-yamdb/
+   ``
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Установить зависимости:
 
-## Running end-to-end tests
+   ```
+   npm i
+   ``
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+4. Запустить проект:
 
-## Further help
+   ```
+   npm start
+   ``
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Приложение
+
+Приложение доступно по ссылке `http://localhost:4200/`.
