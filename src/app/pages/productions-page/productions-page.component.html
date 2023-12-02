@@ -1,0 +1,14 @@
+<app-navigation></app-navigation>
+<app-loading *ngIf="loading; else page"></app-loading>
+
+<ng-template #page>
+    <h3>Поиск по названию произведения</h3>
+    <div class="p-inputgroup w-full">
+        <input class="w-full" type="text" pInputText placeholder="Введите название искомого произведения" [(ngModel)]="term" />
+        <button type="button" pButton label="Search" (click)="onInput(term)"></button>
+    </div>
+    <app-production *ngFor="let prod of productionService.productions" [production]="prod"></app-production>
+    <div class="card flex justify-content-center">
+        <p-paginator (onPageChange)="onPageChange($any($event))" [first]="first" [rows]="rows" [totalRecords]="total" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+    </div>
+</ng-template>

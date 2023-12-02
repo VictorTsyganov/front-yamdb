@@ -1,0 +1,50 @@
+<p>Оценка</p>
+    <div class="card flex justify-content-center">
+        <p-rating [(ngModel)]="value" [stars]="10" [cancel]="false"></p-rating>
+    </div>
+<form [formGroup]="reviewForm" (ngSubmit)="submit()">
+    <p>Текст отзыва</p>
+    <input
+        type="text"
+        class="w-full" 
+        pInputText placeholder="Напишите текст вашего отзыва"
+        formControlName="text"
+        appFocus
+        [(ngModel)]="reviewText"
+    >
+    <p
+        *ngIf="text.hasError('required') && text.touched"
+        class="text-red-600 font-medium mb-2"
+    >
+        Поле обязательно для заполнения.
+    </p>
+    <div
+        *ngIf="errorService.error$ | async as error"
+    >
+        <p 
+            *ngFor="let err of error['non_field_errors']"
+            class="text-red-600 font-medium mb-2"
+        >
+            {{ err }}
+        </p>
+    </div>
+
+    <div *ngIf="create; else update" class="flex sm:flex-column align-items-start sm:align-items-start gap-3 sm:gap-2 m-1">
+        <button
+            pButton icon="pi pi-check" 
+            class="md:align-self-end mb-2"
+            label="Create"
+            [disabled]="reviewForm.invalid"
+        ></button>
+    </div>
+    <ng-template #update>
+        <div class="flex sm:flex-column align-items-start sm:align-items-start gap-3 sm:gap-2 m-1">
+            <button
+                pButton icon="pi pi-check" 
+                class="md:align-self-end mb-2"
+                label="Update"
+                [disabled]="reviewForm.invalid"
+            ></button>
+        </div> 
+    </ng-template>
+</form>

@@ -1,0 +1,54 @@
+<app-navigation></app-navigation>
+<form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <h3>Авторизация пользователя</h3>
+    <p>Username</p>
+    <input
+        type="text"
+        class="w-full" 
+        pInputText placeholder="Введите имя пользователя"
+        formControlName="username"
+        appFocus
+    >
+    <p
+        *ngIf="username.hasError('required') && username.touched"
+        class="text-red-600 font-medium mb-2"
+    >
+        Поле обязательно для заполнения.
+    </p>
+    <p
+        *ngIf="username.hasError('minlength') && username.touched"
+        class="text-red-600 font-medium mb-2"
+    >
+        Минимальное количество символов {{ username.getError('minlength').requiredLength }}. Количество введенных символов {{ username.value.length }}
+    </p>
+    <p
+        *ngIf="username.hasError('maxlength') && username.touched"
+        class="text-red-600 font-medium mb-2"
+    >
+        Максимальное количество символов {{ username.getError('maxlength').requiredLength }}. Количество введенных символов {{ username.value.length }}
+    </p>
+
+    <p>Сonfirmation Code</p>
+    <input
+        type="text"
+        class="w-full"
+        pInputText placeholder="Введите код подтверждения из email"
+        formControlName="confirmation_code"
+        appFocus
+    >
+    <p
+        *ngIf="confirmation_code.hasError('required') && username.touched"
+        class="text-red-600 font-medium mb-2"
+    >
+        Поле обязательно для заполнения.
+    </p>
+
+    <div class="flex sm:flex-column align-items-start sm:align-items-start gap-3 sm:gap-2 m-1">
+        <button
+            pButton icon="pi pi-check" 
+            class="md:align-self-end mb-2"
+            label="Login"
+            [disabled]="loginForm.invalid"
+        ></button>
+    </div>
+</form>

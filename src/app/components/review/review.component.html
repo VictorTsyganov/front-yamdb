@@ -1,0 +1,63 @@
+<p-table [value]="productionService.reviews" dataKey="id">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Отзывы к произведению</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-review let-expanded="expanded">
+        <tr>
+            <td>{{ review.text }}</td>
+            <td>
+                <button type="button" pButton pRipple [pRowToggler]="review" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-review>
+        <tr class="w-full">
+            <td colspan="9">
+                <table class="w-full">
+                    <tr>
+                        <th>Дата</th>
+                        <th>Автор</th>
+                        <th>Оценка</th>
+                        <th></th> 
+                        <th></th>                   
+                    </tr>
+                    <tr>
+                        <td>{{ review.pub_date | date }}</td>
+                        <td>{{ review.author }}</td>
+                        <td>{{ review.score }}</td>
+                        <td>
+                            <div *ngIf="userService.logIn" class="card flex justify-content-end">
+                                <p-button (onClick)="deleteReview(id_title, review.id)" [disabled]="review.author !== request_user" label="Удалить" [style]="{'background': 'var(--red-500)', 'width': '8rem' }"></p-button>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngIf="userService.logIn" class="card flex justify-content-end">
+                                <p-button (onClick)="changeReview(id_title, review.id)" [disabled]="review.author !== request_user" label="Изменить" [style]="{ 'width': '8rem' }"></p-button>
+                            </div>
+                        </td>
+                        <p-dialog header="Изменение отзыва" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+                            <app-create-review [id_title]="id_title"  [id_review]="review.id" [create]="false" [value]="score" [reviewText]="text"></app-create-review>
+                        </p-dialog>
+                    </tr>
+                    
+                </table>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template *ngIf="userService.logIn" pTemplate="footer">
+        <tr>
+            <th></th>
+            <th>
+                <div class="p-1">
+                    <p-button icon="pi" [rounded]="true" (onClick)="showModal()" [disabled]="disable">+</p-button>
+                </div>
+                <p-dialog header="Создание нового отзыва" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+                    <app-create-review [id_title]="id_title" [create]="true"></app-create-review>
+                </p-dialog>
+            </th>
+        </tr>
+    </ng-template>
+</p-table>
