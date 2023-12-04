@@ -16,18 +16,18 @@
                     <p-rating [(ngModel)]="production.rating" [readonly]="true" [cancel]="false" [stars]="10"></p-rating>
                 </span>
                 <button
-                    pButton icon="{{ details? 'pi pi-angle-double-up' : 'pi pi-angle-double-down' }}" 
+                    pButton icon="{{ detailsProduction? 'pi pi-angle-double-up' : 'pi pi-angle-double-down' }}" 
                     class="md:align-self-end mb-2 p-button-rounded"
-                    (click)="details = !details"
+                    (click)="detailsProduction = !detailsProduction"
                 ></button>
             </div>
         </div>
     </div>
-    <div *ngIf="details" class="xl:align-items-end p-4 gap-4 w-full">
+    <div *ngIf="detailsProduction" class="xl:align-items-end p-4 gap-4 w-full">
         <div class="flex align-items-start gap-3"><strong>Жанры произведения: </strong>
                 <li *ngFor="let genre of production.genre">{{ genre.name }}</li>
         </div>
         <div *ngIf="production.description" class="flex align-items-center gap-3 w-full"><strong>Описание произведения: </strong>{{ production.description }}</div>
-        <app-review [id_title]="production.id"></app-review>
+        <app-review [id_title]="production.id" [reviews]="production.reviews" [disableAddReview]="production.disable_add_review"></app-review>
     </div>
 </div>

@@ -14,6 +14,8 @@ export interface ProductionInterface {
     name: string
     year: number
     description?: string
+    reviews?: any
+    disable_add_review?: boolean
 }
 
 export interface PageEvent {

@@ -7,7 +7,7 @@
         <input class="w-full" type="text" pInputText placeholder="Введите название искомого произведения" [(ngModel)]="term" />
         <button type="button" pButton label="Search" (click)="onInput(term)"></button>
     </div>
-    <app-production *ngFor="let prod of productionService.productions" [production]="prod"></app-production>
+    <app-production *ngFor="let prod of productionService.productions" [production]="prod" [production_id]="prod.id"></app-production>
     <div class="card flex justify-content-center">
         <p-paginator (onPageChange)="onPageChange($any($event))" [first]="first" [rows]="rows" [totalRecords]="total" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
     </div>
